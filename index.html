@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Terapias Avançadas Picoloto</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #728c69;
+            --secondary: #8aa384;
+            --light: #f8f9fa;
+            --dark: #2c3e2c;
+            --accent: #a8c99f;
+            --text-light: #5a6d5a;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f7f5;
+            color: var(--dark);
+            line-height: 1.6;
+        }
+        
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 2rem 1rem;
+            text-align: center;
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .tagline {
+            font-size: 1.2rem;
+            font-weight: 300;
+            margin-bottom: 1.5rem;
+        }
+        
+        .modality-badge {
+            display: inline-block;
+            background-color: rgba(255,255,255,0.2);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            margin: 0 0.5rem;
+            font-size: 0.9rem;
+        }
+        
+        nav {
+            background-color: white;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        nav ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            padding: 1rem 0;
+        }
+        
+        nav li {
+            margin: 0 1.5rem;
+        }
+        
+        nav a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        nav a:hover {
+            color: var(--primary);
+        }
+        
+        section {
+            padding: 4rem 1rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+            color: var(--primary);
+            position: relative;
+        }
+        
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 3px;
+            background-color: var(--accent);
+            margin: 0.5rem auto;
+        }
+        
+        .professionals {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 2rem;
+        }
+        
+        .professional-card {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            padding: 2rem;
+            flex: 1;
+            min-width: 300px;
+            max-width: 500px;
+            transition: transform 0.3s;
+            display: flex;
+            flex-direction: column;
+            border-left: 4px solid var(--primary);
+        }
+        
+        .professional-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .professional-photo {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid var(--secondary);
+            margin: 0 auto 1.5rem;
+            display: block;
+        }
+        
+        .professional-name {
+            color: var(--primary);
+            margin-bottom: 1rem;
+            border-bottom: 2px solid var(--secondary);
+            padding-bottom: 0.5rem;
+            text-align: center;
+        }
+        
+        .services {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .service-card {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            padding: 2rem;
+            text-align: center;
+            transition: transform 0.3s;
+            border-top: 4px solid var(--primary);
+            position: relative;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .service-icon {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+        
+        .service-name {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: var(--dark);
+        }
+        
+        .service-price {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #000000;
+            margin-bottom: 1rem;
+            background-color: #f8f8f8;
+            padding: 0.8rem;
+            border-radius: 8px;
+            border: 2px solid #e0e0e0;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+        }
+        
+        .price-highlight {
+            font-size: 1.1rem;
+            font-weight: bold;
+            color: #000000;
+            background-color: #f0f0f0;
+            padding: 0.4rem 0.8rem;
+            border-radius: 5px;
+            margin: 0.3rem 0;
+            display: inline-block;
+            border: 1px solid #ddd;
+        }
+        
+        .service-description {
+            color: var(--text-light);
+            margin-bottom: 1rem;
+            text-align: left;
+        }
+        
+        .service-details {
+            background-color: #f0f5ef;
+            padding: 1rem;
+            border-radius: 5px;
+            margin-bottom: 1.5rem;
+            text-align: left;
+        }
+        
+        .service-details h4 {
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+        
+        .modality-info {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+        
+        .modality {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            background-color: #e8f0e7;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+        }
+        
+        .modality i {
+            color: var(--primary);
+        }
+        
+        .btn {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+            margin-top: 0.5rem;
+        }
+        
+        .btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(114, 140, 105, 0.3);
+        }
+        
+        .contact {
+            background-color: var(--light);
+            text-align: center;
+        }
+        
+        .contact-info {
+            margin-bottom: 2rem;
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+        
+        .social-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: var(--primary);
+            color: white;
+            border-radius: 50%;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+        
+        .social-link:hover {
+            background-color: var(--secondary);
+            transform: scale(1.1);
+        }
+        
+        footer {
+            background-color: var(--dark);
+            color: white;
+            text-align: center;
+            padding: 2rem 1rem;
+        }
+        
+        @media (max-width: 768px) {
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            nav li {
+                margin: 0.5rem 0;
+            }
+            
+            .professionals {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .modality-badge {
+                display: block;
+                margin: 0.5rem 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Terapias Avançadas Picoloto</h1>
+        <p class="tagline">Transformando vidas através do cuidado, conhecimento e amor</p>
+        <div>
+            <span class="modality-badge">
+                <i class="fas fa-video"></i> Atendimento Online
+            </span>
+            <span class="modality-badge">
+                <i class="fas fa-map-marker-alt"></i> Atendimento Presencial
+            </span>
+        </div>
+    </header>
+    
+    <nav>
+        <ul>
+            <li><a href="#sobre">Sobre Nós</a></li>
+            <li><a href="#servicos">Serviços</a></li>
+            <li><a href="#empresas">Para Empresas</a></li>
+            <li><a href="#contato">Contato</a></li>
+        </ul>
+    </nav>
+    
+    <section id="sobre">
+        <h2 class="section-title">Nossas Profissionais</h2>
+        <div class="professionals">
+            <div class="professional-card">
+                <!-- Foto de Janaina -->
+                <img src="janaina.jpeg" alt="Janaina Picoloto" class="professional-photo">
+                
+                <h3 class="professional-name">Janaina Picoloto</h3>
+                <p>Sou uma mulher de alma vibrante, cheia de amor, dedicação e coragem. Minha vida é uma linda junção de paixões: o cuidado, o aprendizado e a realização.</p>
+                <p>Como psicanalista e pedagoga, pós-graduada em psicomotricidade e também em gestão comercial e vendas, mergulho agora na Psicologia. Isso me permite ver o mundo com empatia, didática e facilidade para engajar e comunicar com amor.</p>
+                <p>Sou dinâmica, criativa, corajosa, inteligente e determinada, e encontro alegria em cada passo da minha jornada.</p>
+                <p>Amo criar e estruturar novas soluções, processos e estratégias. Tenho um amplo conhecimento em liderar projetos e resolver problemas imprevistos com facilidade, mesmo sob pressão.</p>
+                <p>Sou mãe de uma menina incrível, por quem me dediquei totalmente, pausando minha carreira. Essa experiência me ensinou o que é a verdadeira determinação.</p>
+                <p>Em resumo, sou uma líder que trabalha com o coração, transformando o saber em ação, e usando a dedicação e o amor como motor para grandes realizações, seja na vida, seja nos negócios.</p>
+            </div>
+            
+            <div class="professional-card">
+                <!-- Foto de Jaqueline -->
+                <img src="jaqueline.jpeg" alt="Jaqueline Picoloto" class="professional-photo">
+                
+                <h3 class="professional-name">Jaqueline Picoloto</h3>
+                <p>Uma mulher determinada e cheia de esperança, movida pela crença inabalável no amor nos olhos das pessoas e na capacidade de mudança do ser humano.</p>
+                <p>Minha missão é colaborar para suavizar situações e solucionar problemas, ajudando a alinhar famílias e seus integrantes a um bem maior.</p>
+                <p>Trabalho para fortalecer laços, criar novas conexões e semear a alegria, paz e clareza para que cada um entenda a vida como uma dádiva.</p>
+                <p>Há 26 anos transformando crianças e adultos e seus laços familiares, sou uma Pedagoga com paixão atuando na Educação e suas vertentes em sala ou coordenação, no EJA, Educação Especial, Educação Infantil, Filosofia e Sociologia.</p>
+                <p>Sempre uma professora que acima de tudo, se tornou uma facilitadora e mentora de alinhamentos comportamentais, que acredita profundamente no poder da mudança humana.</p>
+                <p>Minha jornada se expandiu para as Terapias Integrativas, onde me habilitei em formações como Constelação Sistêmica (Familiar e Empresarial), Psicodrama, Hipnose, Apometria Clínica e Reprogramação Neurolinguística.</p>
+                <p>Com leveza e carinho dedico-me a alinhar famílias, romper padrões limitantes e fortalecer elos em processos de solução de conflitos, desenvolvimento de equipes e transformações pessoais.</p>
+            </div>
+        </div>
+    </section>
+    
+    <section id="servicos">
+        <h2 class="section-title">Nossos Serviços</h2>
+        <div class="services">
+            <div class="service-card">
+                <div class="service-icon"><i class="fas fa-couch"></i></div>
+                <h3 class="service-name">Psicanálise Individual</h3>
+                <p class="service-price">R$ 150,00 | R$ 100,00</p>
+                
+                <div class="service-details">
+                    <h4>Como Funciona:</h4>
+                    <p><strong>Primeira Sessão (Anamnese):</strong> 60 minutos - <span class="price-highlight">R$ 150,00</span></p>
+                    <p><strong>Sessões Seguintes:</strong> 40 minutos - <span class="price-highlight">R$ 100,00</span></p>
+                </div>
+                
+                <p class="service-description">Processo terapêutico profundo para autoconhecimento, resolução de conflitos internos e desenvolvimento pessoal através da análise do inconsciente.</p>
+                
+                <div class="modality-info">
+                    <div class="modality">
+                        <i class="fas fa-video"></i> Online
+                    </div>
+                    <div class="modality">
+                        <i class="fas fa-map-marker-alt"></i> Presencial
+                    </div>
+                </div>
+                
+                <a href="#contato" class="btn">Agendar Sessão</a>
+            </div>
+            
+            <div class="service-card">
+                <div class="service-icon"><i class="fas fa-network-wired"></i></div>
+                <h3 class="service-name">Constelação Sistêmica</h3>
+                <p class="service-price">R$ 350,00</p>
+                
+                <div class="service-details">
+                    <h4>Como Funciona:</h4>
+                    <p><strong>Duração:</strong> 1 sessão única</p>
+                    <p><strong>Valor:</strong> <span class="price-highlight">R$ 350,00</span></p>
+                </div>
+                
+                <p class="service-description">Técnica terapêutica que revela dinâmicas familiares ocultas e promove a cura de padrões transgeracionais através da representação do sistema familiar.</p>
+                
+                <div class="modality-info">
+                    <div class="modality">
+                        <i class="fas fa-video"></i> Online
+                    </div>
+                    <div class="modality">
+                        <i class="fas fa-map-marker-alt"></i> Presencial
+                    </div>
+                </div>
+                
+                <a href="#contato" class="btn">Agendar Sessão</a>
+            </div>
+            
+            <div class="service-card">
+                <div class="service-icon"><i class="fas fa-brain"></i></div>
+                <h3 class="service-name">Hipnose Terapêutica</h3>
+                <p class="service-price">R$ 450,00</p>
+                
+                <div class="service-details">
+                    <h4>Como Funciona:</h4>
+                    <p><strong>Pacote:</strong> 3 sessões (1 por semana)</p>
+                    <p><strong>Valor:</strong> <span class="price-highlight">R$ 450,00</span></p>
+                </div>
+                
+                <p class="service-description">Técnica que acessa o subconsciente para modificar padrões negativos, tratar fobias, ansiedade e promover mudanças comportamentais profundas.</p>
+                
+                <div class="modality-info">
+                    <div class="modality">
+                        <i class="fas fa-video"></i> Online
+                    </div>
+                    <div class="modality">
+                        <i class="fas fa-map-marker-alt"></i> Presencial
+                    </div>
+                </div>
+                
+                <a href="#contato" class="btn">Agendar Sessão</a>
+            </div>
+            
+            <div class="service-card">
+                <div class="service-icon"><i class="fas fa-star-of-life"></i></div>
+                <h3 class="service-name">Apometria</h3>
+                <p class="service-price">R$ 520,00</p>
+                
+                <div class="service-details">
+                    <h4>Como Funciona:</h4>
+                    <p><strong>Pacote:</strong> 4 protocolos (1 por semana)</p>
+                    <p><strong>Valor:</strong> <span class="price-highlight">R$ 520,00</span></p>
+                </div>
+                
+                <p class="service-description">Técnica de terapia energética que trabalha com a expansão da consciência e desobsessão espiritual para promover equilíbrio e bem-estar integral.</p>
+                
+                <div class="modality-info">
+                    <div class="modality">
+                        <i class="fas fa-video"></i> Online
+                    </div>
+                    <div class="modality">
+                        <i class="fas fa-map-marker-alt"></i> Presencial
+                    </div>
+                </div>
+                
+                <a href="#contato" class="btn">Agendar Sessão</a>
+            </div>
+            
+            <div class="service-card">
+                <div class="service-icon"><i class="fas fa-broom"></i></div>
+                <h3 class="service-name">Limpeza Energética com PNL</h3>
+                <p class="service-price">R$ 450,00</p>
+                
+                <div class="service-details">
+                    <h4>Como Funciona:</h4>
+                    <p><strong>Pacote:</strong> 3 sessões</p>
+                    <p><strong>Valor:</strong> <span class="price-highlight">R$ 450,00</span></p>
+                </div>
+                
+                <p class="service-description">Combinação poderosa de técnicas de limpeza energética com Programação Neurolinguística para eliminar bloqueios e instalar novos padrões mentais positivos.</p>
+                
+                <div class="modality-info">
+                    <div class="modality">
+                        <i class="fas fa-video"></i> Online
+                    </div>
+                    <div class="modality">
+                        <i class="fas fa-map-marker-alt"></i> Presencial
+                    </div>
+                </div>
+                
+                <a href="#contato" class="btn">Agendar Sessão</a>
+            </div>
+            
+            <div class="service-card">
+                <div class="service-icon"><i class="fas fa-theater-masks"></i></div>
+                <h3 class="service-name">Psicodrama</h3>
+                <p class="service-price">R$ 720,00</p>
+                
+                <div class="service-details">
+                    <h4>Como Funciona:</h4>
+                    <p><strong>Pacote:</strong> 5 sessões</p>
+                    <p><strong>Valor:</strong> <span class="price-highlight">R$ 720,00</span></p>
+                </div>
+                
+                <p class="service-description">Método terapêutico que utiliza a dramatização para explorar conflitos emocionais, permitindo novas perspectivas e resolução de problemas através da ação.</p>
+                
+                <div class="modality-info">
+                    <div class="modality">
+                        <i class="fas fa-video"></i> Online
+                    </div>
+                    <div class="modality">
+                        <i class="fas fa-map-marker-alt"></i> Presencial
+                    </div>
+                </div>
+                
+                <a href="#contato" class="btn">Agendar Sessão</a>
+            </div>
+        </div>
+    </section>
+    
+    <section id="empresas">
+        <h2 class="section-title">Para Empresas</h2>
+        <div style="text-align: center; max-width: 800px; margin: 0 auto;">
+            <p>Oferecemos treinamentos e palestras personalizadas para empresas que desejam investir no desenvolvimento de seus colaboradores e no fortalecimento de suas equipes.</p>
+            <p>Nossos serviços empresariais incluem:</p>
+            <ul style="text-align: left; display: inline-block; margin: 1.5rem 0;">
+                <li><strong>Constelação Sistêmica Empresarial:</strong> Identifica e resolve conflitos organizacionais</li>
+                <li><strong>Treinamentos de Desenvolvimento de Equipes:</strong> Fortalece a comunicação e cooperação</li>
+                <li><strong>Palestras sobre Comunicação Eficaz:</strong> Melhora a qualidade das interações profissionais</li>
+                <li><strong>Workshops de Inteligência Emocional:</strong> Desenvolve habilidades socioemocionais</li>
+                <li><strong>Programas de Bem-estar Corporativo:</strong> Promove saúde mental no ambiente de trabalho</li>
+            </ul>
+            
+            <div class="modality-info" style="justify-content: center; margin: 2rem 0;">
+                <div class="modality">
+                    <i class="fas fa-video"></i> Modalidade Online
+                </div>
+                <div class="modality">
+                    <i class="fas fa-map-marker-alt"></i> Modalidade Presencial
+                </div>
+            </div>
+            
+            <p>Entre em contato para conversarmos sobre as necessidades específicas da sua empresa e desenvolvermos uma proposta personalizada.</p>
+            <a href="#contato" class="btn">Solicitar Proposta</a>
+        </div>
+    </section>
+    
+    <section id="contato" class="contact">
+        <h2 class="section-title">Entre em Contato</h2>
+        <div class="contact-info">
+            <p>Estamos prontas para ajudar você em sua jornada de transformação e autoconhecimento.</p>
+            <p>Entre em contato para agendar uma sessão ou obter mais informações sobre nossos serviços.</p>
+            
+            <div class="modality-info" style="justify-content: center; margin: 2rem 0;">
+                <div class="modality">
+                    <i class="fas fa-video"></i> Atendimento Online Disponível
+                </div>
+                <div class="modality">
+                    <i class="fas fa-map-marker-alt"></i> Atendimento Presencial Disponível
+                </div>
+            </div>
+            
+            <div class="social-links">
+                <a href="https://wa.me/5543984753024" class="social-link">
+                    <i class="fab fa-whatsapp"></i>
+                </a>
+                <a href="https://instagram.com/picolototerapiasavançadas" class="social-link">
+                    <i class="fab fa-instagram"></i>
+                </a>
+            </div>
+            
+            <p><i class="fas fa-phone"></i> Telefone/WhatsApp: (43) 98475-3024</p>
+            <p><i class="fab fa-instagram"></i> Instagram: @picolototerapiasavançadas</p>
+        </div>
+        <a href="https://wa.me/5543984753024" class="btn">Fale Conosco pelo WhatsApp</a>
+    </section>
+    
+    <footer>
+        <p>&copy; 2023 Terapias Avançadas Picoloto - Todos os direitos reservados</p>
+        <p style="margin-top: 0.5rem; font-size: 0.9rem;">Transformando vidas através do cuidado, conhecimento e amor</p>
+    </footer>
+</body>
+</html>
